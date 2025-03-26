@@ -1,12 +1,18 @@
-const tsEslint = require('typescript-eslint');
-const eslintImport = require('eslint-plugin-import');
-const sortKeysPlus = require('eslint-plugin-sort-keys-plus');
-const { includeIgnoreFile } = require('@eslint/compat');
-const path = require('node:path');
+import { includeIgnoreFile } from '@eslint/compat';
+
+import eslintImport from 'eslint-plugin-import';
+import sortKeysPlus from 'eslint-plugin-sort-keys-plus';
+import path from 'node:path';
+import { dirname } from 'path';
+import tsEslint from 'typescript-eslint';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
-module.exports = [
+export default [
   includeIgnoreFile(gitignorePath),
   {
     languageOptions: {

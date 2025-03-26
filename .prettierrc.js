@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   arrowParens: 'avoid',
   importOrder: ['^@(.*)/(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
   importOrderCaseInsensitive: true,
