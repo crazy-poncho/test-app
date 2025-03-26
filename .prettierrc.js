@@ -1,0 +1,16 @@
+module.exports = {
+  arrowParens: 'avoid',
+  importOrder: ['^@(.*)/(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
+  importOrderCaseInsensitive: true,
+  importOrderParserPlugins: ['decorators-legacy', 'jsx', 'tsx', 'typescript'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  jsxSingleQuote: true,
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  printWidth: 140,
+  singleQuote: true,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'all',
+  useTabs: false,
+};
