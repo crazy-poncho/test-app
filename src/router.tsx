@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { COCKTAIL_CODES } from './consts';
-import { CocktailPage } from './pages';
+import { CocktailPage, NotFoundPage } from './pages';
 
 export const AppRouter = () => {
   return (
@@ -10,6 +10,7 @@ export const AppRouter = () => {
       {COCKTAIL_CODES.map(code => (
         <Route key={code} element={<CocktailPage />} path={`/${code}`} />
       ))}
+      <Route element={<NotFoundPage />} path='*' />
     </Routes>
   );
 };
