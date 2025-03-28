@@ -5,7 +5,7 @@ const BASE_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
 // TODO think about better solution
 const cache = new Map<Code, { data: any; isResolved: boolean } | Error>();
 
-const fetchData = (code: Code) => {
+const fetchData = <TData>(code: Code): TData => {
   if (cache.has(code)) {
     const cached = cache.get(code);
     if (cached instanceof Error) {
@@ -32,6 +32,6 @@ const fetchData = (code: Code) => {
   throw promise;
 };
 
-export const useData = (code: Code) => {
-  return fetchData(code);
+export const useData = <TData>(code: Code): TData => {
+  return fetchData<TData>(code);
 };
