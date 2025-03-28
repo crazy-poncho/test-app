@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
+import { FC, ReactNode, useCallback, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 type VerticalTabs = {
@@ -6,15 +6,10 @@ type VerticalTabs = {
 };
 
 export const VerticalTabs: FC<VerticalTabs> = props => {
-  const [activeTab, setActiveTab] = useState(1);
-
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const currentTab = props.tabs.find(tab => tab.label === location.pathname.slice(1));
-    setActiveTab(currentTab.id);
-  }, []);
+  const [activeTab, setActiveTab] = useState(props.tabs.find(tab => tab.label === location.pathname.slice(1)).id);
 
   const onTabClick = useCallback(
     event => {
