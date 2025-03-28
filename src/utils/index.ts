@@ -1,0 +1,1 @@
+export { getNumberOfIngredients } from './getNumberOfIngredients';
