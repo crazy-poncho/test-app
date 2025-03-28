@@ -1,12 +1,11 @@
 import { FC } from 'react';
 
 import { Cocktail } from '../components';
-import { COCKTAIL_CODES } from '../consts';
 import { useData } from '../hooks';
-import { Drink } from '../types';
+import { Code, Drink } from '../types';
 
 type CocktailData = {
-  drinkName: (typeof COCKTAIL_CODES)[number];
+  drinkName: Code;
 };
 
 export const Cocktails: FC<CocktailData> = props => {
