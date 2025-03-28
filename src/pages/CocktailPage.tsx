@@ -1,6 +1,6 @@
 import { FC, Suspense } from 'react';
 
-import { ErrorBoundary, VerticalTabs } from '../components';
+import { ErrorBoundary, Loader, VerticalTabs } from '../components';
 import { COCKTAIL_CODES } from '../consts';
 import { Cocktails } from '../elements';
 
@@ -12,7 +12,7 @@ export const CocktailPage: FC = () => {
         label,
         content: (
           <ErrorBoundary>
-            <Suspense fallback='loading...'>
+            <Suspense fallback={<Loader />}>
               <Cocktails drinkName={label} />
             </Suspense>
           </ErrorBoundary>
