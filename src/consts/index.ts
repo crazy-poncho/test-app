@@ -1,1 +1,1 @@
-export { COCKTAIL_CODES } from './cocktailCodes';
+export { COCKTAIL_CODES, CocktailEnum } from './cocktailCodes';

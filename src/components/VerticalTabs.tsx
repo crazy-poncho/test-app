@@ -1,6 +1,8 @@
 import { FC, ReactNode, useCallback, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { routes } from '../routes';
+
 type VerticalTabs = {
   tabs: { id: number; label: string; content: ReactNode }[];
 };
@@ -15,10 +17,10 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
     event => {
       const tabId = +event.target.id.split('-').at(-1);
       const currentTab = props.tabs.find(tab => tab.id === tabId);
-      const newPath = `/${currentTab.label}`;
+      const newPath = routes[currentTab.label];
 
       if (newPath !== location.pathname) {
-        navigate(`/${currentTab.label}`);
+        navigate(newPath);
         setActiveTab(tabId);
       }
     },
