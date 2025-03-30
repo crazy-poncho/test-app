@@ -12,6 +12,7 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState(props.tabs.find(tab => tab.label === location.pathname.slice(1)).id);
+  const [isOpen, toggleIsOpen] = useState<boolean>(false);
 
   const onTabClick = useCallback(
     event => {
@@ -23,26 +24,39 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
         navigate(newPath);
         setActiveTab(tabId);
       }
+
+      toggleIsOpen(false);
     },
     [location],
   );
 
   return (
-    <div className='flex h-screen rounded-xl'>
-      <div className='flex flex-col w-40 border-r'>
-        {props.tabs.map(tab => (
-          <button
-            id={`vertical-tab-${tab.id}`}
-            key={tab.id}
-            onClick={onTabClick}
-            className={`px-4 py-3 text-left hover:bg-blue-300 hover:cursor-pointer focus:outline-none ${activeTab === tab.id ? 'font-semibold bg-blue-200 text-blue-600' : ''}`}
-          >
-            {tab.label.toUpperCase()}
-          </button>
-        ))}
+    <div className='grid grid-cols-5 h-screen'>
+      <div
+        className={`flex sm:col-span-1 fixed top-0 left-0 transition-transform duration-300 sm:relative sm:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
+      >
+        <nav className='flex flex-col sm:border-r'>
+          {props.tabs.map(tab => (
+            <button
+              id={`vertical-tab-${tab.id}`}
+              key={tab.id}
+              onClick={onTabClick}
+              className={`px-4 py-3 text-left bg-blue-100 hover:bg-blue-300 hover:cursor-pointer focus:outline-none ${activeTab === tab.id ? 'font-semibold bg-blue-200 text-blue-600' : ''}`}
+            >
+              {tab.label.toUpperCase()}
+            </button>
+          ))}
+        </nav>
       </div>
 
-      <div className='flex-1 p-6'>{props.tabs.find(tab => tab.id === activeTab)?.content}</div>
+      <button
+        className='sm:hidden fixed top-0 left-0 z-10 bg-gray-800 text-white p-1 hover:cursor-pointer'
+        onClick={() => toggleIsOpen(true)}
+      >
+        ☰
+      </button>
+
+      <div className='flex-1 p-6 col-span-5 sm:col-span-4'>{props.tabs.find(tab => tab.id === activeTab)?.content}</div>
     </div>
   );
 };
