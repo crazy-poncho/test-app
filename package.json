@@ -8,8 +8,7 @@
     "dev": "vite",
     "lint": "eslint .",
     "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|tsx|json|html)'",
-    "prepare": "husky",
-    "postinstall": "npx husky init"
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",
