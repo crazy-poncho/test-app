@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 type BadgeProps = {
-  value?: ReactNode;
+  value: ReactNode;
 };
 
 export const Badge: FC<BadgeProps> = props => {
