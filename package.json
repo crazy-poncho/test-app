@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "vite build",
     "dev": "vite",
     "lint": "eslint .",
     "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|tsx|json|html)'",
