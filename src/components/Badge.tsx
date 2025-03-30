@@ -1,7 +1,5 @@
 import { FC, ReactNode } from 'react';
 
-import { useTestId } from '../hooks/useTestId';
-
 type BadgeProps = {
   value: ReactNode;
   'data-testid'?: string;
