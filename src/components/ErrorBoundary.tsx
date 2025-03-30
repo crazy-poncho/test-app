@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 
+import { ErrorPage } from '../pages';
+
 type ErrorBoundaryProps = {
   children?: ReactNode;
 };
@@ -17,7 +19,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
 
   render() {
     if (this.state.hasError) {
-      return <div>Error: {this.state.error.message}</div>;
+      return <ErrorPage error={this.state.error} />;
     }
     return this.props.children;
   }
