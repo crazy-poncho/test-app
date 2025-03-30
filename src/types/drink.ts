@@ -1,6 +1,7 @@
 export type Drink = {
   strDrink: string;
   strAlcoholic: string;
+  strCategory: string;
   strGlass: string;
   strInstructions: string;
   strDrinkThumb: string;

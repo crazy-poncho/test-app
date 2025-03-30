@@ -17,6 +17,7 @@ export const Cocktail: FC<CocktailProps> = props => {
       <div className='flex flex-col gap-y-8'>
         <div>
           <h1 className='font-bold text-[32px] mb-2'>{props.drink.strDrink}</h1>
+          <Badge value={props.drink.strCategory} />
           <Badge value={props.drink.strAlcoholic} />
           <h2>{props.drink.strGlass}</h2>
         </div>
