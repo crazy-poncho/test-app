@@ -2,15 +2,15 @@ import { render, screen } from '@testing-library/react';
 
 import { describe, expect, it } from 'vitest';
 
-import { mocks } from '../tests/fixtures';
+import { overrides } from '../tests';
 import { Cocktail } from './Cocktail';
 
 describe('Cocktail', () => {
   it('renders the Cocktail component', () => {
-    render(<Cocktail drink={mocks.drinks[0]} />);
+    render(<Cocktail drink={overrides.drinks[0]} />);
 
-    const categoryCard = screen.queryByTestId('categoryCard');
-    expect(categoryCard).toBeInTheDocument();
+    const cocktailCard = screen.queryByTestId('cocktailCardMojito');
+    expect(cocktailCard).toBeInTheDocument();
 
     const drinkName = screen.queryByTestId('drinkName');
     expect(drinkName.textContent).toBe('Mojito');
