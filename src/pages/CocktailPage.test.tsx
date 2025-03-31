@@ -1,18 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import { describe, expect, it } from 'vitest';
 
-import { routes } from '../routes';
-import { AppTestWrapper, mockApi, mocks } from '../tests';
+import { mockApi, mocks, render } from '../tests';
 import { CocktailPage } from './CocktailPage';
 
 describe('CocktailPage', () => {
   mockApi([mocks.drinks]);
 
   it('renders the CocktailPage component', async () => {
-    const component = render(<CocktailPage />, {
-      wrapper: ({ children }) => <AppTestWrapper children={children} initialRouterEntries={[routes.margarita]} />,
-    });
+    render(<CocktailPage />);
 
     const verticalTabs = screen.queryByTestId('verticalTabs');
     await waitFor(() => expect(verticalTabs).toBeInTheDocument());

@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { describe, expect, it } from 'vitest';
 
-import { overrides } from '../tests';
+import { overrides, render } from '../tests';
 import { Cocktail } from './Cocktail';
 
 describe('Cocktail', () => {

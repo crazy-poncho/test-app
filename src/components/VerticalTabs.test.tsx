@@ -1,11 +1,10 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { useNavigate } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 
-import { routes } from '../routes';
-import { AppTestWrapper } from '../tests/AppTestWrapper';
+import { render } from '../tests';
 import { overrides } from '../tests/fixtures';
 import { VerticalTabs } from './VerticalTabs';
 
@@ -20,9 +19,7 @@ vi.mock('react-router-dom', async () => {
 
 describe('VerticalTabs', () => {
   it('renders the VerticalTabs component', () => {
-    render(<VerticalTabs tabs={overrides.tabs} />, {
-      wrapper: ({ children }) => <AppTestWrapper children={children} initialRouterEntries={[routes.margarita]} />,
-    });
+    render(<VerticalTabs tabs={overrides.tabs} />);
 
     expect(screen.queryByTestId('verticalTabs')).toBeTruthy();
     expect(screen.getByTestId('tabContent').textContent).toBe('test content 1');
@@ -32,9 +29,7 @@ describe('VerticalTabs', () => {
     const mockNavigate = vi.fn();
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
 
-    render(<VerticalTabs tabs={overrides.tabs} />, {
-      wrapper: ({ children }) => <AppTestWrapper children={children} initialRouterEntries={[routes.margarita]} />,
-    });
+    render(<VerticalTabs tabs={overrides.tabs} />);
 
     const tabButton2 = screen.queryByTestId('verticalTab2');
     expect(tabButton2).toBeInTheDocument();
