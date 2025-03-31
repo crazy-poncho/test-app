@@ -31,13 +31,15 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
   );
 
   return (
-    <div className='grid grid-cols-5 h-screen'>
+    <div data-testid='verticalTabs' className='grid grid-cols-5 h-screen'>
       <div
+        data-testid='tabNavigation'
         className={`flex sm:col-span-1 fixed top-0 left-0 transition-transform duration-300 sm:relative sm:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
       >
         <nav className='flex flex-col sm:border-r'>
           {props.tabs.map(tab => (
             <button
+              data-testid={`verticalTab${tab.id}`}
               id={`vertical-tab-${tab.id}`}
               key={tab.id}
               onClick={onTabClick}
@@ -56,7 +58,9 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
         ☰
       </button>
 
-      <div className='flex-1 p-6 col-span-5 sm:col-span-4'>{props.tabs.find(tab => tab.id === activeTab)?.content}</div>
+      <div data-testid='tabContent' className='flex-1 p-6 col-span-5 sm:col-span-4'>
+        {props.tabs.find(tab => tab.id === activeTab)?.content}
+      </div>
     </div>
   );
 };
