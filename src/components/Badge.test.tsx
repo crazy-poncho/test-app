@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { describe, expect, it } from 'vitest';
 
+import { render } from '../tests';
 import { Badge } from './Badge';
 
 describe('Badge', () => {
