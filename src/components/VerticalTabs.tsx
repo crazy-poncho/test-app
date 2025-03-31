@@ -1,6 +1,7 @@
-import { FC, ReactNode, useCallback, useState } from 'react';
+import { FC, ReactNode, useCallback, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useOutsideClick } from '../hooks';
 import { routes } from '../routes';
 
 type VerticalTabs = {
@@ -10,6 +11,7 @@ type VerticalTabs = {
 export const VerticalTabs: FC<VerticalTabs> = props => {
   const location = useLocation();
   const navigate = useNavigate();
+  const navigationRef = useRef(null);
 
   const [activeTab, setActiveTab] = useState(props.tabs.find(tab => tab.label === location.pathname.slice(1)).id);
   const [isOpen, toggleIsOpen] = useState<boolean>(false);
@@ -30,9 +32,14 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
     [location],
   );
 
+  useOutsideClick(navigationRef, () => {
+    toggleIsOpen(false);
+  });
+
   return (
     <div data-testid='verticalTabs' className='grid grid-cols-5 h-screen'>
       <div
+        ref={navigationRef}
         data-testid='tabNavigation'
         className={`flex sm:col-span-1 fixed top-0 left-0 transition-transform duration-300 sm:relative sm:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20`}
       >
