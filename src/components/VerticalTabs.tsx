@@ -52,7 +52,7 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
       </div>
 
       <button
-        className='sm:hidden fixed top-0 left-0 z-10 bg-gray-800 text-white p-1 hover:cursor-pointer'
+        className='sm:hidden fixed top-0 left-0 z-10 bg-gray-800 text-white p-2 rounded hover:cursor-pointer'
         onClick={() => toggleIsOpen(true)}
       >
         ☰
