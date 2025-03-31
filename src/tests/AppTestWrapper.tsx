@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { InitialEntry, MemoryRouter } from 'react-router-dom';
 
-import { routes } from '../routes';
+import { DataProvider } from '../store';
 
 type AppTestWrapperProps = {
   children: ReactNode;
@@ -9,5 +9,9 @@ type AppTestWrapperProps = {
 };
 
 export const AppTestWrapper: FC<AppTestWrapperProps> = props => {
-  return <MemoryRouter initialEntries={props.initialRouterEntries}>{props.children}</MemoryRouter>;
+  return (
+    <MemoryRouter initialEntries={props.initialRouterEntries}>
+      <DataProvider>{props.children}</DataProvider>
+    </MemoryRouter>
+  );
 };
