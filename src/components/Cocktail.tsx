@@ -13,7 +13,10 @@ export const Cocktail: FC<CocktailProps> = props => {
   const numberOfIngredients = getNumberOfIngredients(props.drink);
 
   return (
-    <div data-testid={`cocktailCard${props.drink.strDrink}`} className='flex flex-col-reverse sm:flex-row gap-5 justify-between'>
+    <div
+      data-testid={`cocktailCard${props.drink.strDrink}`}
+      className='flex flex-col-reverse sm:flex-row gap-5 items-center mb-10 sm:justify-between'
+    >
       <div className='flex flex-col gap-y-8'>
         <div>
           <h1 data-testid='drinkName' className='font-bold text-[32px] mb-2'>
