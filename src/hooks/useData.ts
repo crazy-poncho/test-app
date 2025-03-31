@@ -1,34 +1,33 @@
+import { useContext } from 'react';
+
 import { Code } from '../types';
+import { DataCacheContext } from './../store';
 
 const BASE_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
 
-// TODO think about better solution
-const cache = new Map<Code, { data: any; isResolved: boolean } | Error>();
+const useDataCache = () => useContext(DataCacheContext);
 
 const fetchData = <TData>(code: Code): TData => {
+  const { cache, setCache } = useDataCache();
+
   if (cache.has(code)) {
     const cached = cache.get(code);
-    if (cached instanceof Error) {
-      throw cached;
-    }
 
-    if (!cached.isResolved) {
-      throw cached.data;
-    }
+    if (cached instanceof Error || cached instanceof Promise) throw cached;
 
-    return cached.data;
+    return cached;
   }
 
   const promise = fetch(`${BASE_URL}?s=${code}`)
     .then(res => res.json())
     .then(data => {
-      cache.set(code, { data, isResolved: true });
+      setCache(prev => new Map(prev).set(code, data));
     })
     .catch(error => {
-      cache.set(code, error);
+      setCache(prev => new Map(prev).set(code, error));
     });
 
-  cache.set(code, { data: promise, isResolved: false });
+  setCache(prev => new Map(prev).set(code, promise));
   throw promise;
 };
 
