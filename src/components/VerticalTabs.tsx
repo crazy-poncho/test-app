@@ -65,7 +65,7 @@ export const VerticalTabs: FC<VerticalTabs> = props => {
         ☰
       </button>
 
-      <div data-testid='tabContent' className='flex-1 p-6 col-span-5 sm:col-span-4'>
+      <div data-testid='tabContent' className='flex-1 p-6 col-span-5 sm:col-span-4 overflow-auto'>
         {props.tabs.find(tab => tab.id === activeTab)?.content}
       </div>
     </div>
