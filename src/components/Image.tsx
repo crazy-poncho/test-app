@@ -1,12 +1,28 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 type ImageProps = {
   src: string;
-  width?: number;
-  height?: number;
   alt?: string;
 };
 
 export const Image: FC<ImageProps> = props => {
-  return <img data-testid='drinkImg' src={props.src} width='100%' height='100%' loading='lazy' alt={props.alt ?? ''} />;
+  const [isVisible, setIsVisible] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (imgRef.current) observer.observe(imgRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return <img data-testid='drinkImg' ref={imgRef} src={isVisible ? props.src : undefined} alt={props.alt ?? ''} />;
 };

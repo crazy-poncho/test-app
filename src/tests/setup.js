@@ -6,3 +6,21 @@ import { afterEach } from 'vitest';
 afterEach(() => {
   cleanup();
 });
+
+global.IntersectionObserver = class IntersectionObserver {
+  constructor(callback) {
+    callback([{ isIntersecting: true }]);
+  }
+
+  observe() {
+    return null;
+  }
+
+  disconnect() {
+    return null;
+  }
+
+  unobserve() {
+    return null;
+  }
+};
