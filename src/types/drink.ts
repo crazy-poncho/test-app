@@ -1,4 +1,19 @@
 export type Drink = {
+  idDrink: string;
+  strDrinkAlternate: string | null;
+  strTags: string | null;
+  strVideo: string | null;
+  strIBA: string | null;
+  strInstructionsES: string | null;
+  strInstructionsDE: string | null;
+  strInstructionsFR: string | null;
+  strInstructionsIT: string | null;
+  'strInstructionsZH-HANS': string | null;
+  'strInstructionsZH-HANT': string | null;
+  strImageSource: string | null;
+  strImageAttribution: string | null;
+  strCreativeCommonsConfirmed: 'Yes' | 'No';
+  dateModified: string | null;
   strDrink: string;
   strAlcoholic: string;
   strCategory: string;
